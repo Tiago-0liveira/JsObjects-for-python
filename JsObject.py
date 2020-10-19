@@ -19,6 +19,13 @@ class JsObject:
     def items(self):
         return self.__dictionary
 
+    def __getitem__(self, value):
+        return self.__dictionary[value]
+
+    def __setitem__(self, value, newvalue):
+        print(newvalue, value)
+        self.__dictionary[value] = newvalue
+
     def __iter__(self):
         for x in self.__dictionary:
             yield x
@@ -73,8 +80,9 @@ jsobject = JsObject({
 })
 
 
-print(jsobject.ferrari.motor)
+print(jsobject.audi)
+jsobject.audi = {"engine": 222, "awd": 121}
 
 
 
-print({"w": lambda :print("wad")}["w"]())
+
