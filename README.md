@@ -53,7 +53,9 @@ dict = {
         "engine": 100
     }
 }
-#to get same output in python we just need to pass the dictionary we have as a parameter to the class JsObject as it follows -->
+#with this u just need to pass the dictionary as a parameter to the 
+#(for now only works with dictionaries)
+#class JsObject as it follows -->
 
 obj = JsObject(dict)
 print(obj.price)

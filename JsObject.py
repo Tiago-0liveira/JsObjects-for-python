@@ -68,21 +68,4 @@ class JsObject:
                 return s[:-2] + "}"
         return f"""<JsObject {loop("", self.__dictionary)}>"""
 
-jsobject = JsObject({
-    "audi": 2000,
-    "bmw": 1000,
-    "mercedes": {
-        "motor": 200
-    },
-    "ferrari": {
-        "motor": ["awd", {"cilinders": 10}, 2, [2, 3, 2, "awdwad", {}]]
-    }
-})
-
-
-print(jsobject.audi)
-jsobject.audi = {"engine": 222, "awd": 121}
-
-
-
 
