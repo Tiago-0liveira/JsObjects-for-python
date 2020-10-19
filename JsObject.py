@@ -1,12 +1,12 @@
-
+import json
 class JsObject:
-    def __init__(self, dictionary: dict):
+    def __init__(self, dictionary):
         self.__dictionary = dictionary
-        
-        for x in dictionary:
-            if type(dictionary[x]) not in [type({}), type([])]: setattr(self, x, dictionary[x])
+        if type(dictionary) == type(""): self.__dictionary = json.loads(self.__dictionary)
+        for x in self.__dictionary:
+            if type(self.__dictionary[x]) not in [type({}), type([])]: setattr(self, x, self.__dictionary[x])
             else:
-                if type(dictionary[x]) == type({}): setattr(self, x, JsObject(dictionary[x]))
+                if type(self.__dictionary[x]) == type({}): setattr(self, x, JsObject(self.__dictionary[x]))
                 else:
                     def loop(obj, objs):
                         for z in objs:
@@ -14,24 +14,19 @@ class JsObject:
                             elif type(z) == type([]): obj.append(loop([], z))
                             else: obj.append(z)
                         return obj
-                    setattr(self, x, loop([], dictionary[x]))
+                    setattr(self, x, loop([], self.__dictionary[x]))
 
-    def items(self):
-        return self.__dictionary
+    def items(self): return self.__dictionary
 
-    def __getitem__(self, value):
-        return self.__dictionary[value]
+    def __getitem__(self, value): return self.__dictionary[value]
 
-    def __setitem__(self, value, newvalue):
-        print(newvalue, value)
-        self.__dictionary[value] = newvalue
+    def __setitem__(self, value, newvalue): self.__dictionary[value] = newvalue
+
+    def __len__(self): return len(self.__dictionary)
 
     def __iter__(self):
         for x in self.__dictionary:
             yield x
-
-    def __len__(self):
-        return len(self.__dictionary)
 
     def __str__(self):
         def loop(s, d):
@@ -67,5 +62,3 @@ class JsObject:
                         s += f"""{k}: {loop("",v)}, """
                 return s[:-2] + "}"
         return f"""<JsObject {loop("", self.__dictionary)}>"""
-
-
