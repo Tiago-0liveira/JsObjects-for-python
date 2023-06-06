@@ -74,4 +74,4 @@ print(obj.audi.price)
 > **I'l be reading the suggestions and issues so make sure u give me headaches :D**
 
 
-##### Anything more u can contact me via Discord (like programming partner or things like that) -> tiagooo#1547
+##### Anything more u can contact me via Discord -> tiagooo#9119
